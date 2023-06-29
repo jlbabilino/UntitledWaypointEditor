@@ -15,6 +15,10 @@ jobs:
         with:
           platform: x64
 
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.5.2
+        
+
       - name: Set up Rust
         uses: hecrj/setup-rust-action@v1
         with:
@@ -25,6 +29,9 @@ jobs:
         with:
           version: latest
           platform: x64
+
+      - name: Download npm deps
+        run: npm install
 
       - name: Build Rust
         working-directory: src-tauri
