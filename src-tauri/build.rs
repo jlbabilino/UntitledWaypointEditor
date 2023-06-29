@@ -1,5 +1,6 @@
 fn main() {
-  let path = std::path::PathBuf::from("target/debug");
-  println!("cargo:extra-link-arg=-Wl,-rpath={}", path.display());
+  if cfg!(target_os = "macos") {
+    println!("cargo:rustc-link-arg=-Wl,-rpath,@loader_path/");
+  }
   tauri_build::build()
 }
